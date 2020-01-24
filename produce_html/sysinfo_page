@@ -10,6 +10,10 @@
 # No spaces between variable name and equal sign
 title="System Information for"
 
+# CONSTANTS
+RIGHT_NOW=$(date +"%x %r %Z")
+TIME_STAMP="Updated on $RIGHT_NOW by $USER"
+
 cat <<- _EOF_
 
 <html>
@@ -19,6 +23,7 @@ cat <<- _EOF_
 
 	<body>
 		<h1>$HOSTNAME</h1>
+		<p>$TIME_STAMP</p>
 	</body>
 </html>
 
