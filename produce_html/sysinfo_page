@@ -1,21 +1,40 @@
 #!/bin/bash
 
 # sysinfo_page - A script to produce an HTML file
-
-# This is a "here script", an additional form of I/O redirection.
-# It provides a way to include content that will be given to the standard input of a command
 # $ sysinfo_page > sysinfo_page.html
-# Environment variables are already set by the startup file
 
 # No spaces between variable name and equal sign
-title="System Information for"
-
-# CONSTANTS
+# CONSTANTS | $(command) <-- substitutes the results of the enclosed command.
+# Environment variables are already set by the startup file
+TITLE="System Information  for $HOSTNAME"
 RIGHT_NOW=$(date +"%x %r %Z")
 TIME_STAMP="Updated on $RIGHT_NOW by $USER"
 
-cat <<- _EOF_
+###### FUNCTIONS
+# Functions must appear before use them
+# Must contain at least one valid command
 
+system_info(){
+	echo "system_info"
+}
+
+show_uptime(){
+	echo "show_uptime"
+}
+
+drive_space(){
+	echo "drive_space"
+}
+
+home_space(){
+	echo "home_space"
+}
+
+###### MAIN
+
+# This is a "here script", an additional form of I/O redirection.
+# It provides a way to include content that will be given to the standard input of a command
+cat <<- _EOF_
 <html>
 	<head>
 		<title>$title $HOSTNAME</title>
@@ -24,6 +43,10 @@ cat <<- _EOF_
 	<body>
 		<h1>$HOSTNAME</h1>
 		<p>$TIME_STAMP</p>
+		$(system_info)
+		$(show_uptime)
+		$(drive_space)
+		$(home_space)
 	</body>
 </html>
 
