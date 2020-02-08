@@ -5,6 +5,7 @@
 
 # No spaces between variable name and equal sign
 # CONSTANTS | $(command) <-- substitutes the results of the enclosed command.
+# It provides a way to include content that will be given to the standard input of a command
 # Environment variables are already set by the startup file
 TITLE="System Information  for $HOSTNAME"
 RIGHT_NOW=$(date +"%x %r %Z")
@@ -15,19 +16,30 @@ TIME_STAMP="Updated on $RIGHT_NOW by $USER"
 # Must contain at least one valid command
 
 system_info(){
-	echo "system_info"
+	echo "<h2>System release info</h2>"
+	echo "<p>Function not yet implemented</p>"
 }
 
 show_uptime(){
-	echo "show_uptime"
+	echo "<h2>System uptime</h2>"
+	echo "<pre>"
+	uptime
+	echo "</pre>"
 }
 
 drive_space(){
-	echo "drive_space"
+	echo "<h2>Filesystem space</h2>"
+        echo "<pre>"
+        df
+	echo "</pre>"
 }
 
 home_space(){
-	echo "home_space"
+	echo "<h2>Home directory space by user</h2>"
+        echo "<pre>"
+        echo "Bytes directory"
+	du -s /Users/douzez | sort -nr 
+        echo "</pre>"
 }
 
 ###### MAIN
