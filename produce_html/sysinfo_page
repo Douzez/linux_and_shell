@@ -30,17 +30,20 @@ show_uptime(){
 drive_space(){
 	echo "<h2>Filesystem space</h2>"
         echo "<pre>"
-        df
+        df -h
 	echo "</pre>"
 }
 
 home_space(){
-	echo "<h2>Home directory space by user</h2>"
-        echo "<pre>"
-        echo "Bytes directory"
-	du -s /Users/douzez | sort -nr 
-        echo "</pre>"
-}
+	# Only the SUPER USER can get this information
+	if [ "id -u" = "0" ]; then
+		echo "<h2>Home directory space by user</h2>"
+        	echo "<pre>"
+        	echo "Bytes directory"
+		du -s /Users/* | sort -nr 
+        	echo "</pre>"
+	fi
+} # End of home_space function
 
 ###### MAIN
 
